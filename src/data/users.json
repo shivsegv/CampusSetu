@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "role": "student",
+    "name": "Alice Example",
+    "email": "alice@example.com",
+    "password": "student123",
+    "profile": { "cgpa": 8.5, "skills": ["react","javascript"], "resumeUrl": "" }
+  },
+  {
+    "id": 2,
+    "role": "recruiter",
+    "name": "Bob Recruit",
+    "email": "bob@acme.com",
+    "password": "recruiter123",
+    "companyId": 1
+  },
+  {
+    "id": 3,
+    "role": "placement",
+    "name": "Carol Placement",
+    "email": "carol@college.edu",
+    "password": "placement123"
+  }
+]
