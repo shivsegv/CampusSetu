@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "name": "Acme Corp",
+    "description": "Leading software solutions provider specialising in cloud and web products.",
+    "location": "Bengaluru, India",
+    "logo": "/logos/acme.png",
+    "website": "https://acme.example"
+  }
+]
