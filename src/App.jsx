@@ -5,8 +5,8 @@ import AuthPage from "./pages/Auth/Auth";
 import JobDetails from "./pages/JobDetails/JobDetails";
 import StudentLayout from "./pages/Student/StudentLayout";
 import StudentDashboard from "./pages/Student/Dashboard";
-import StudentProfile from "./pages/Student/Profile";
 import StudentApplications from "./pages/Student/Applications";
+import StudentProfile from "./pages/Student/Profile";
 
 export default function App() {
   return (
@@ -25,6 +25,7 @@ export default function App() {
         path="*"
         element={<div style={{ padding: 40 }}>Page not found</div>}
       />
+      <Route path="/student/profile" element={<StudentProfile />} />
     </Routes>
   );
 }
