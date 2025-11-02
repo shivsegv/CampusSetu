@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "title": "Frontend Intern",
+    "companyId": 1,
+    "companyName": "Acme Corp",
+    "location": "Remote",
+    "type": "Internship",
+    "minCgpa": 7.0,
+    "skills": ["react", "javascript"],
+    "shortDescription": "Join our frontend team and work on modern UI development.",
+    "description": "Full job description here...",
+    "postedByUserId": 2,
+    "approved": true,
+    "createdAt": "2025-10-25T10:00:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Backend Developer",
+    "companyId": 1,
+    "companyName": "Acme Corp",
+    "location": "Bengaluru",
+    "type": "Full-Time",
+    "minCgpa": 7.5,
+    "skills": ["node", "express", "mongodb"],
+    "shortDescription": "Work on backend APIs and microservices.",
+    "description": "Full job description for backend developer...",
+    "postedByUserId": 2,
+    "approved": true,
+    "createdAt": "2025-11-01T12:00:00Z"
+  },
+  {
+    "id": 3,
+    "title": "Data Science Intern",
+    "companyId": 1,
+    "companyName": "Acme Corp",
+    "location": "Bengaluru",
+    "type": "Internship",
+    "minCgpa": 8.0,
+    "skills": ["python", "pandas", "ml"],
+    "shortDescription": "Work with data pipelines and ML models.",
+    "description": "Full job description for data science intern...",
+    "postedByUserId": 2,
+    "approved": false,
+    "createdAt": "2025-10-30T09:00:00Z"
+  }
+]
