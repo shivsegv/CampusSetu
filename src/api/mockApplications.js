@@ -1,31 +1,25 @@
-const KEY = 'cs_applications';
+import applications from "../data/applications.json";
 
-function load() {
-  const raw = localStorage.getItem(KEY);
-  return raw ? JSON.parse(raw) : [];
-}
-function save(arr) {
-  localStorage.setItem(KEY, JSON.stringify(arr));
-}
+let localApplications = [...applications];
 
-export async function createApplication({ jobId, studentId, resumeUrl, cover }) {
-  const apps = load();
-  const id = apps.length ? Math.max(...apps.map(a => a.id)) + 1 : 1;
-  const newApp = {
-    id,
-    jobId: Number(jobId),
-    studentId: Number(studentId),
-    resumeUrl: resumeUrl || '',
-    cover: cover || '',
-    status: 'applied',
-    appliedAt: new Date().toISOString()
-  };
-  apps.push(newApp);
-  save(apps);
-  return new Promise(resolve => setTimeout(() => resolve(newApp), 150));
-}
+export const getApplications = (studentId) => {
+  return localApplications.filter((app) => app.studentId === studentId);
+};
 
-export async function getApplicationsByStudentId(studentId) {
-  const apps = load().filter(a => Number(a.studentId) === Number(studentId));
-  return new Promise(resolve => setTimeout(() => resolve(apps), 80));
-}
+export const patchApplicationStatus = (id, status) => {
+  const index = localApplications.findIndex((a) => a.id === id);
+  if (index !== -1) {
+    localApplications[index].status = status;
+  }
+  return localApplications[index];
+};
+
+// new addition
+export const createApplication = (newApp) => {
+  const id = localApplications.length
+    ? Math.max(...localApplications.map((a) => a.id)) + 1
+    : 1;
+  const application = { id, ...newApp, appliedAt: new Date().toISOString() };
+  localApplications.push(application);
+  return application;
+};

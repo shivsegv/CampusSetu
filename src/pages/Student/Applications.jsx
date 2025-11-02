@@ -1,84 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../../contexts/AuthContext";
-import { getApplicationsByStudentId } from "../../api/mockApplications";
-import { getJobById } from "../../api/mockJobs";
-import { Link } from "react-router-dom";
+import { getApplications } from "../../api/mockApplications";
 
 export default function StudentApplications() {
-  const auth = useAuth();
-  const user = auth?.user;
-  const [applications, setApplications] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [apps, setApps] = useState([]);
 
   useEffect(() => {
-    let mounted = true;
-    if (!user) {
-      setLoading(false);
-      return;
-    }
-    setLoading(true);
-    getApplicationsByStudentId(user.id)
-      .then(async (apps) => {
-        if (!mounted) return;
-        // enrich with job info
-        const enriched = await Promise.all(
-          apps.map(async (a) => {
-            const job = await getJobById(a.jobId);
-            return { ...a, job };
-          })
-        );
-        setApplications(enriched);
-      })
-      .catch(() => setApplications([]))
-      .finally(() => {
-        if (mounted) setLoading(false);
-      });
-    return () => {
-      mounted = false;
-    };
-  }, [user]);
+    const data = getApplications(1); // mock studentId = 1
+    setApps(data);
+  }, []);
 
-  if (loading) return <div className="p-6">Loading applications...</div>;
-  if (!user)
-    return <div className="p-6">Please login to see applications.</div>;
+  if (!apps.length)
+    return (
+      <div className="p-6 text-gray-600 text-center">
+        No applications found.
+      </div>
+    );
 
   return (
-    <div className="bg-white rounded-2xl p-6 shadow">
-      <h3 className="text-lg font-semibold mb-4">My Applications</h3>
-      {applications.length === 0 ? (
-        <div className="text-gray-600">
-          You haven't applied to any jobs yet.
-        </div>
-      ) : (
-        <ul className="space-y-3">
-          {applications.map((a) => (
-            <li
-              key={a.id}
-              className="p-3 border rounded flex items-center justify-between"
-            >
+    <div className="p-6 space-y-4">
+      <h2 className="text-2xl font-semibold mb-4">My Applications</h2>
+      <div className="grid gap-4">
+        {apps.map((app) => (
+          <div
+            key={app.id}
+            className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm hover:shadow-md transition"
+          >
+            <div className="flex justify-between items-center">
               <div>
-                <div className="font-medium">
-                  {a.job?.title || "Unknown role"}
-                </div>
-                <div className="text-sm text-muted">{a.job?.companyName}</div>
-                <div className="text-xs text-muted mt-1">
-                  Applied on {new Date(a.appliedAt).toLocaleString()}
-                </div>
+                <h3 className="font-semibold text-lg">{app.jobTitle}</h3>
+                <p className="text-gray-500">{app.companyName}</p>
+                <p className="text-sm text-gray-400 mt-1">
+                  Applied on {new Date(app.appliedAt).toLocaleDateString()}
+                </p>
               </div>
-              <div className="text-sm">
-                <div className="mb-2">
-                  <span className="px-2 py-1 rounded-full bg-gray-100">
-                    {a.status}
-                  </span>
-                </div>
-                <Link to={`/jobs/${a.jobId}`} className="text-primary text-sm">
-                  View job
-                </Link>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+              <span
+                className={`px-3 py-1 rounded-full text-sm font-medium ${
+                  app.status === "Shortlisted"
+                    ? "bg-green-100 text-green-700"
+                    : app.status === "Rejected"
+                    ? "bg-red-100 text-red-700"
+                    : "bg-yellow-100 text-yellow-700"
+                }`}
+              >
+                {app.status}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
