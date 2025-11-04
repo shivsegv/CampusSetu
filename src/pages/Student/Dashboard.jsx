@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import FilterSidebar from "../../components/FilterSidebar";
+import FilterBar from "../../components/FilterBar";
 import JobCard from "../../components/JobCard";
 import Pagination from "../../components/Pagination";
 import { getJobs } from "../../api/mockJobs";
@@ -12,134 +12,94 @@ export default function StudentDashboard() {
   // filters state
   const [filters, setFilters] = useState({});
   const [page, setPage] = useState(1);
-  const pageSize = 6;
+  const pageSize = 9;
 
   // modal
   const [selectedJob, setSelectedJob] = useState(null);
 
   useEffect(() => {
-    let mounted = true;
     setLoading(true);
     getJobs({ approved: true })
-      .then((data) => {
-        if (!mounted) return;
-        setAllJobs(data);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setAllJobs([]);
-      })
-      .finally(() => {
-        if (mounted) setLoading(false);
-      });
-    return () => {
-      mounted = false;
-    };
+      .then(setAllJobs)
+      .catch(() => setAllJobs([]))
+      .finally(() => setLoading(false));
   }, []);
 
   // derive filtered jobs
   const filtered = useMemo(() => {
     if (!allJobs || allJobs.length === 0) return [];
     return allJobs.filter((job) => {
-      // text query
       if (filters.query) {
         const q = filters.query.toLowerCase();
         if (
-          !(
-            job.title?.toLowerCase().includes(q) ||
-            job.companyName?.toLowerCase().includes(q)
-          )
-        )
-          return false;
+          !(job.title?.toLowerCase().includes(q) || job.companyName?.toLowerCase().includes(q))
+        ) return false;
       }
-      if (
-        filters.company &&
-        filters.company !== "" &&
-        job.companyName !== filters.company
-      )
-        return false;
-      if (
-        filters.location &&
-        filters.location !== "" &&
-        job.location !== filters.location
-      )
-        return false;
-      if (filters.type && filters.type !== "" && job.type !== filters.type)
-        return false;
-      if (
-        typeof filters.minCgpa === "number" &&
-        Number(job.minCgpa || 0) < filters.minCgpa
-      )
-        return false;
-      if (filters.skills && filters.skills.length) {
-        const want = filters.skills.map((s) => s.toLowerCase());
-        const has = (job.skills || []).map((s) => s.toLowerCase());
-        if (!want.every((w) => has.includes(w))) return false;
-      }
+      if (filters.company && job.companyName !== filters.company) return false;
+      if (filters.location && job.location !== filters.location) return false;
+      if (filters.type && job.type !== filters.type) return false;
       return true;
     });
   }, [allJobs, filters]);
 
   // pagination
   const total = filtered.length;
-  const paged = useMemo(
-    () => filtered.slice((page - 1) * pageSize, page * pageSize),
-    [filtered, page]
-  );
+  const paged = useMemo(() => filtered.slice((page - 1) * pageSize, page * pageSize), [filtered, page]);
 
   useEffect(() => {
     setPage(1);
   }, [filters]); // reset page when filters change
 
   return (
-    <div className="grid lg:grid-cols-6 gap-6">
-      <div className="lg:col-span-1">
-        <FilterSidebar onChange={setFilters} initial={{}} jobs={allJobs} />
+    <div>
+      <header className="mb-8">
+        <h1 className="text-4xl font-extrabold text-gray-800 mb-2">Find Your Next Opportunity</h1>
+        <p className="text-lg text-gray-500">Search through hundreds of open roles and find your perfect fit.</p>
+      </header>
+
+      <FilterBar onChange={setFilters} jobs={allJobs} />
+
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold text-gray-700">Job Feed</h2>
+        <div className="text-sm text-gray-500">Showing {paged.length} of {total} results</div>
       </div>
 
-      <div className="lg:col-span-5">
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-semibold">Job Feed</h2>
-          <div className="text-sm text-muted">{total} results</div>
+      {loading ? (
+        <div className="p-6 text-center text-gray-500">Loading jobs...</div>
+      ) : total === 0 ? (
+        <div className="p-10 bg-white rounded-2xl text-center text-gray-600 shadow-lg">
+          <h3 className="text-xl font-semibold">No Jobs Found</h3>
+          <p className="mt-2">Try adjusting your filters to find more opportunities.</p>
         </div>
-
-        {loading ? (
-          <div className="p-6">Loading jobs...</div>
-        ) : total === 0 ? (
-          <div className="p-6 text-gray-600">
-            No jobs found for selected filters.
+      ) : (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {paged.map((job) => (
+              <JobCard
+                key={job.id}
+                job={job}
+                onApply={() => setSelectedJob(job)}
+              />
+            ))}
           </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-              {paged.map((job) => (
-                <JobCard
-                  key={job.id}
-                  job={job}
-                  onApply={() => setSelectedJob(job)}
-                />
-              ))}
-            </div>
 
-            <Pagination
-              page={page}
-              pageSize={pageSize}
-              total={total}
-              onChange={setPage}
-            />
-          </>
-        )}
-      </div>
+          <Pagination
+            page={page}
+            pageSize={pageSize}
+            total={total}
+            onChange={setPage}
+          />
+        </>
+      )}
 
       {selectedJob && (
         <ApplyModal
           job={selectedJob}
           onClose={() => setSelectedJob(null)}
-          onApplied={() => {
-            /* optionally refresh */
-          }}
+          onApplied={() => { /* optionally refresh */ }}
         />
       )}
     </div>
   );
 }
+
