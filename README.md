@@ -41,6 +41,13 @@ The project uses a mock, frontend-only authentication system that utilizes the b
 - **Registration:** You can also toggle to the **Sign Up** form to create a new user with either a 'Student' or 'Recruiter' role.
 - **Protected Routes:** The student-specific pages (`/student`, `/student/applications`, etc.) are protected. Unauthorized users will be redirected to the homepage where they can log in via the authentication modal.
 
+### Profile Data Persistence
+
+Due to browser security restrictions, the application cannot directly modify local files. Therefore, when you update your profile on the "My Profile" page:
+
+1.  Changes are immediately saved to your browser's `localStorage` for session persistence and UI updates.
+2.  To permanently save these changes to the `src/data/users.json` file in your codebase, you will need to instruct me (the CLI agent) to do so. After making changes in the UI, simply tell me: **"Commit the profile changes to the JSON file."** I will then execute the necessary commands to update `users.json`.
+
 ## Project Structure
 
 A brief overview of the key directories:
@@ -51,4 +58,4 @@ A brief overview of the key directories:
 - `src/contexts`: Global state management using React Context (e.g., `AuthContext`, `UIContext`).
 - `src/data`: JSON files that act as a mock database for users, jobs, etc.
 - `src/pages`: Top-level components for each page or route in the application.
-- `src/routes`: Components related to routing, such as `ProtectedRoute`.
+- `src/routes`: Components related to routing, suchs as `ProtectedRoute`.

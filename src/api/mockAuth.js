@@ -36,3 +36,17 @@ export async function register({ name, email, password, role }) {
   const token = `mock-token-${id}-${Date.now()}`;
   return { token, user: newUser };
 }
+
+export async function updateUser(userId, updatedProfile) {
+  const users = loadUsers();
+  const userIndex = users.findIndex(u => u.id === userId);
+  if (userIndex === -1) throw new Error("User not found.");
+
+  const userToUpdate = users[userIndex];
+  userToUpdate.name = updatedProfile.name;
+  userToUpdate.profile = { ...userToUpdate.profile, ...updatedProfile.profile };
+
+  saveUsers(users);
+  await new Promise(r => setTimeout(r, 100)); // Simulate API call delay
+  return userToUpdate;
+}
