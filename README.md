@@ -20,6 +20,11 @@ Campus SETU is a modern, clean, and user-friendly web application designed to st
 - `GET /recruiter/edit-job/:id`: A form to edit an existing job listing.
 - `GET /recruiter/jobs/:id/applicants`: A list of all applicants for a specific job.
 
+### Placement Cell Routes (Protected)
+- `GET /placement/dashboard`: The main dashboard for the placement cell.
+- `GET /placement/approvals`: A queue to review and approve pending job listings.
+- `GET /placement/students`: A page to manage student data.
+
 ## Key Features
 
 - **Modal-Based Authentication:** A seamless sign-in and sign-up experience for both Students and Recruiters.
@@ -71,6 +76,13 @@ The recruiter dashboard provides a complete set of tools to manage the hiring pr
     - **Delete:** Remove a job posting.
     - **View Applicants:** Navigate to the applicants page for a specific job.
 - **View Applicants (`/recruiter/jobs/:id/applicants`):** See a list of all students who have applied for a job. You can review their details and update their application status directly from this table.
+
+## Placement Cell Features
+
+The placement cell dashboard is designed for administrative oversight of the placement process.
+
+- **Dashboard (`/placement/dashboard`):** A central hub for placement cell coordinators.
+- **Job Approvals (`/placement/approvals`):** A critical feature where coordinators can view a queue of all jobs submitted by recruiters that are pending approval. They can approve jobs, which makes them visible to students in the job feed.
 
 ### Profile Data Persistence
 

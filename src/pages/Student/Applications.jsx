@@ -13,7 +13,7 @@ const StatusBadge = ({ status }) => {
   return <span className={`${baseClasses} ${statusClasses[status] || 'bg-gray-100 text-gray-800'}`}>{status}</span>;
 };
 
-export default function StudentApplications() {
+export function StudentApplications() {
   const [apps, setApps] = useState([]);
   const [loading, setLoading] = useState(true);
 

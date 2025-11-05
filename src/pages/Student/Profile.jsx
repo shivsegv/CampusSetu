@@ -9,7 +9,7 @@ const InputField = ({ label, children }) => (
   </div>
 );
 
-export default function StudentProfile() {
+export function StudentProfile() {
   const { user, login } = useAuth(); // Using login to refresh context
   const [form, setForm] = useState({ name: '', email: '', cgpa: '', skills: [], resumeUrl: '' });
   const [status, setStatus] = useState({ saving: false, saved: false, error: null });

@@ -38,5 +38,12 @@
     "password": "password123",
     "role": "recruiter",
     "company": "DevHub Labs"
+  },
+  {
+    "id": 201,
+    "name": "Admin Cell",
+    "email": "placement@college.edu",
+    "password": "password123",
+    "role": "placement"
   }
 ]

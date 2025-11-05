@@ -5,7 +5,7 @@ async function loadUsers() {
   if (raw) return JSON.parse(raw);
 
   try {
-    const response = await fetch('/src/data/users.json');
+    const response = await fetch(`/src/data/users.json?t=${new Date().getTime()}`);
     if (!response.ok) throw new Error('Network response was not ok');
     const seedUsers = await response.json();
     localStorage.setItem(USERS_KEY, JSON.stringify(seedUsers));

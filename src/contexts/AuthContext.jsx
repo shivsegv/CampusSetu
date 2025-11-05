@@ -37,6 +37,7 @@ export function AuthProvider({ children }) {
   const logout = () => {
     setState({ token: null, user: null });
     localStorage.removeItem(KEY);
+    localStorage.removeItem('cs_users'); // Clear the user cache
   };
 
   const value = { ...state, login, register, logout };

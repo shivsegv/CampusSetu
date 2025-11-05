@@ -6,10 +6,12 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import AuthModal from "./components/AuthModal";
 
 // Student Pages
-import StudentLayout from "./pages/Student/StudentLayout";
-import StudentDashboard from "./pages/Student/Dashboard";
-import StudentApplications from "./pages/Student/Applications";
-import StudentProfile from "./pages/Student/Profile";
+import {
+  StudentLayout,
+  StudentDashboard,
+  StudentApplications,
+  StudentProfile,
+} from "./pages/Student";
 
 import {
   RecruiterLayout,
@@ -19,6 +21,14 @@ import {
   Applicants,
   EditJob,
 } from "./pages/Recruiter";
+
+// Placement Cell Pages
+import {
+  PlacementLayout,
+  PlacementDashboard,
+  JobApprovals,
+  ManageStudents,
+} from "./pages/Placement";
 
 export default function App() {
   return (
@@ -37,7 +47,7 @@ export default function App() {
             </ProtectedRoute>
           }
         >
-          <Route index element={<StudentDashboard />} />
+          <Route path="dashboard" element={<StudentDashboard />} />
           <Route path="profile" element={<StudentProfile />} />
           <Route path="applications" element={<StudentApplications />} />
         </Route>
@@ -56,6 +66,20 @@ export default function App() {
           <Route path="jobs" element={<JobListings />} />
           <Route path="jobs/:id/applicants" element={<Applicants />} />
           <Route path="edit-job/:id" element={<EditJob />} />
+        </Route>
+
+        {/* Protected Placement Cell Routes */}
+        <Route
+          path="/placement"
+          element={
+            <ProtectedRoute>
+              <PlacementLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="dashboard" element={<PlacementDashboard />} />
+          <Route path="approvals" element={<JobApprovals />} />
+          <Route path="students" element={<ManageStudents />} />
         </Route>
 
         {/* Not Found Route */}

@@ -61,3 +61,13 @@ export const updateJob = async (id, updatedJob) => {
   }
   return Promise.reject(new Error("Job not found"));
 };
+
+export const patchJobApproval = async (jobId, isApproved) => {
+  await loadJobs();
+  const index = jobs.findIndex((j) => j.id === Number(jobId));
+  if (index !== -1) {
+    jobs[index].approved = isApproved;
+    return Promise.resolve(jobs[index]);
+  }
+  return Promise.reject(new Error("Job not found"));
+};

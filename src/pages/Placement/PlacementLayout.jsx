@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
-export function StudentLayout() {
+export function PlacementLayout() {
   const { user, logout } = useAuth();
 
   const activeLinkStyle = { 
-    color: '#1E40AF', // A distinct color for the active link
+    color: '#1E40AF',
     borderBottom: '2px solid #1E40AF',
     fontWeight: '600'
   };
@@ -21,14 +21,14 @@ export function StudentLayout() {
                 Campus SETU
               </NavLink>
               <nav className="hidden md:flex items-center gap-4 h-full">
-                <NavLink to="/student/dashboard" end style={({ isActive }) => isActive ? activeLinkStyle : undefined} className="h-full flex items-center px-2 text-gray-600 hover:text-primary transition-colors">
-                  Job Feed
+                <NavLink to="/placement/dashboard" end style={({ isActive }) => isActive ? activeLinkStyle : undefined} className="h-full flex items-center px-2 text-gray-600 hover:text-primary transition-colors">
+                  Dashboard
                 </NavLink>
-                <NavLink to="/student/applications" style={({ isActive }) => isActive ? activeLinkStyle : undefined} className="h-full flex items-center px-2 text-gray-600 hover:text-primary transition-colors">
-                  My Applications
+                <NavLink to="/placement/approvals" style={({ isActive }) => isActive ? activeLinkStyle : undefined} className="h-full flex items-center px-2 text-gray-600 hover:text-primary transition-colors">
+                  Job Approvals
                 </NavLink>
-                <NavLink to="/student/profile" style={({ isActive }) => isActive ? activeLinkStyle : undefined} className="h-full flex items-center px-2 text-gray-600 hover:text-primary transition-colors">
-                  My Profile
+                <NavLink to="/placement/students" style={({ isActive }) => isActive ? activeLinkStyle : undefined} className="h-full flex items-center px-2 text-gray-600 hover:text-primary transition-colors">
+                  Manage Students
                 </NavLink>
               </nav>
             </div>

@@ -5,7 +5,7 @@ import Pagination from "../../components/Pagination";
 import { getJobs } from "../../api/mockJobs";
 import ApplyModal from "../../components/ApplyModal";
 
-export default function StudentDashboard() {
+export function StudentDashboard() {
   const [allJobs, setAllJobs] = useState([]);
   const [loading, setLoading] = useState(true);
 
