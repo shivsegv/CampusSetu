@@ -11,11 +11,13 @@ import StudentDashboard from "./pages/Student/Dashboard";
 import StudentApplications from "./pages/Student/Applications";
 import StudentProfile from "./pages/Student/Profile";
 
-// Recruiter Pages
-import RecruiterLayout from "./pages/Recruiter/RecruiterLayout";
-import PostJob from "./pages/Recruiter/PostJob";
-import JobListings from "./pages/Recruiter/JobListings";
-import Applicants from "./pages/Recruiter/Applicants";
+import {
+  RecruiterLayout,
+  RecruiterDashboard,
+  PostJob,
+  JobListings,
+  Applicants,
+} from "./pages/Recruiter";
 
 export default function App() {
   return (
@@ -26,14 +28,29 @@ export default function App() {
         <Route path="/jobs/:id" element={<JobDetails />} />
 
         {/* Protected Student Routes */}
-        <Route path="/student" element={<ProtectedRoute><StudentLayout /></ProtectedRoute>}>
+        <Route
+          path="/student"
+          element={
+            <ProtectedRoute>
+              <StudentLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<StudentDashboard />} />
           <Route path="profile" element={<StudentProfile />} />
           <Route path="applications" element={<StudentApplications />} />
         </Route>
 
         {/* Protected Recruiter Routes */}
-        <Route path="/recruiter" element={<ProtectedRoute><RecruiterLayout /></ProtectedRoute>}>
+        <Route
+          path="/recruiter"
+          element={
+            <ProtectedRoute>
+              <RecruiterLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="dashboard" element={<RecruiterDashboard />} />
           <Route path="post-job" element={<PostJob />} />
           <Route path="jobs" element={<JobListings />} />
           <Route path="jobs/:id/applicants" element={<Applicants />} />
