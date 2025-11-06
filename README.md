@@ -1,6 +1,6 @@
-# Campus SETU
+# CampusSetu
 
-Campus SETU is a modern, clean, and user-friendly web application designed to streamline the campus placement process for students and recruiters. This project is built as a frontend prototype using React, Vite, and Tailwind CSS, and features a mock API for data handling.
+CampusSetu is a modern, clean, and user-friendly web application designed to streamline the campus placement process for students and recruiters. This project is built as a frontend prototype using React, Vite, and Tailwind CSS, and features a mock API for data handling.
 
 ## Application Routes
 
