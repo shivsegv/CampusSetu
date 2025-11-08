@@ -18,7 +18,7 @@ const FilterSelect = ({ label, value, onChange, options }) => (
     </p>
     <Listbox value={value} onChange={onChange}>
       <div className={selectorClass}>
-        <Listbox.Button className="flex w-full items-center justify-between rounded-xl border border-white/70 bg-white/95 px-4 py-2.5 text-left text-sm text-slate-600 shadow-soft backdrop-blur transition hover:border-brand-200">
+  <Listbox.Button className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-left text-sm text-slate-600 shadow-card transition hover:border-slate-300">
           <span className="truncate">{value || `All ${label}`}</span>
           <ChevronUpDownIcon className="h-5 w-5 text-slate-400" />
         </Listbox.Button>
@@ -28,7 +28,7 @@ const FilterSelect = ({ label, value, onChange, options }) => (
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute z-10 mt-2 max-h-60 w-full overflow-auto rounded-xl border border-slate-100 bg-white py-2 text-sm shadow-elevated">
+          <Listbox.Options className="absolute z-10 mt-2 max-h-60 w-full overflow-auto rounded-xl border border-slate-200 bg-white py-2 text-sm shadow-elevated">
             <Listbox.Option value="" className={({ active }) =>
               clsx("flex cursor-pointer items-center justify-between px-4 py-2", active && "bg-brand-50 text-brand-700")
             }>
@@ -61,7 +61,7 @@ const ActiveFilter = ({ label, value, onClear }) => (
   <button
     type="button"
     onClick={onClear}
-    className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700 transition hover:bg-brand-100"
+    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 transition hover:bg-slate-200"
   >
     <span>{label}: {value}</span>
     <XMarkIcon className="h-3.5 w-3.5" />
@@ -112,7 +112,7 @@ const FilterBar = ({ onChange, jobs = [] }) => {
     <section className="card-elevated">
       <div className="flex flex-col gap-4 p-5">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
             <FunnelIcon className="h-5 w-5" />
           </div>
           <div>
@@ -138,7 +138,7 @@ const FilterBar = ({ onChange, jobs = [] }) => {
               value={filters.query}
               onChange={(event) => updateFilter("query", event.target.value)}
               placeholder="Search by title, skill, or company"
-              className="w-full rounded-xl border border-white/70 bg-white/95 px-10 py-2.5 text-sm text-slate-600 shadow-soft backdrop-blur placeholder:text-slate-400 focus:border-brand-200"
+              className="w-full rounded-xl border border-slate-200 bg-white px-10 py-2.5 text-sm text-slate-600 shadow-card placeholder:text-slate-400 focus:border-slate-300"
             />
           </div>
           <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-3">

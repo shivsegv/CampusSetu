@@ -35,9 +35,9 @@ export function RecruiterLayout() {
           Monitor role performance, manage applicant stages, and collaborate with placement teams in real time.
         </p>
       </div>
-      <div className="rounded-3xl border border-brand-100 bg-brand-50/80 px-5 py-4 text-sm text-brand-600">
-        <p className="font-semibold uppercase tracking-wider text-xs">Hiring Sprint</p>
-        <p className="mt-1">Boost conversion by sharing challenge statements or projects with shortlisted candidates.</p>
+      <div className="rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-600">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Hiring sprint</p>
+        <p className="mt-2">Boost conversion by sharing challenge statements or projects with shortlisted candidates.</p>
       </div>
     </div>
   );

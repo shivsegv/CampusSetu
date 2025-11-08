@@ -34,9 +34,9 @@ export function PlacementLayout() {
         </p>
       </div>
       <div className="grid gap-3 text-sm">
-        <div className="rounded-2xl border border-brand-100 bg-brand-50/80 px-4 py-3">
-          <p className="text-xs font-semibold uppercase text-brand-500">Upcoming spotlight</p>
-          <p className="mt-1 text-brand-700">TechnoWave Labs pre-placement talk • 28 Aug, 11:00 AM</p>
+        <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Upcoming spotlight</p>
+          <p className="mt-2 text-slate-700">TechnoWave Labs pre-placement talk • 28 Aug, 11:00 AM</p>
         </div>
       </div>
     </div>

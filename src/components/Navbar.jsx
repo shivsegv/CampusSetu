@@ -14,10 +14,11 @@ const Navbar = () => {
 
   const links = useMemo(
     () => [
-      { label: "Product", href: "#product" },
-      { label: "Solutions", href: "#solutions" },
-      { label: "Analytics", href: "/analytics" },
-      { label: "Pricing", href: "#pricing" },
+      { label: "Overview", href: "/#about", type: "anchor" },
+      { label: "Features", href: "/#features", type: "anchor" },
+      { label: "Workflow", href: "/#workflow", type: "anchor" },
+      { label: "Personas", href: "/#personas", type: "anchor" },
+      { label: "Analytics", href: "/analytics", type: "route" },
     ],
     []
   );
@@ -34,78 +35,113 @@ const Navbar = () => {
   };
 
   const renderLinks = (className = "") => (
-    <ul className={`flex flex-col gap-3 lg:flex-row lg:items-center lg:gap-6 ${className}`}>
+    <ul className={`flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6 ${className}`}>
       {links.map((link) => (
         <li key={link.label}>
-          <Link
-            to={link.href}
-            className="text-sm font-medium text-slate-500 transition hover:text-brand-600"
-            onClick={() => setMenuOpen(false)}
-          >
-            {link.label}
-          </Link>
+          {link.type === "route" ? (
+            <Link
+              to={link.href}
+              className="group relative inline-flex items-center text-sm font-medium text-slate-500 transition-colors duration-150 ease-out hover:text-slate-900"
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+              <span className="pointer-events-none absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-slate-900 transition-transform duration-150 ease-out group-hover:scale-x-100" />
+            </Link>
+          ) : (
+            <a
+              href={link.href}
+              className="group relative inline-flex items-center text-sm font-medium text-slate-500 transition-colors duration-150 ease-out hover:text-slate-900"
+              onClick={() => setMenuOpen(false)}
+            >
+              {link.label}
+              <span className="pointer-events-none absolute -bottom-1 left-0 h-[2px] w-full origin-left scale-x-0 bg-slate-900 transition-transform duration-150 ease-out group-hover:scale-x-100" />
+            </a>
+          )}
         </li>
       ))}
     </ul>
   );
 
   return (
-    <header className="relative z-30">
-      <div className="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-white via-white/90 to-transparent" />
-      <nav className="relative mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/70 bg-white/95 px-4 py-3 shadow-soft backdrop-blur lg:px-6">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-500 text-lg font-semibold text-white shadow-soft">
+    <header className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/55 backdrop-blur supports-[backdrop-filter]:bg-white/45">
+      <div className="relative mx-auto max-w-6xl px-4 pb-2 pt-3 lg:px-6">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-2 h-[72px] rounded-full bg-gradient-to-r from-brand-500/12 via-white/0 to-brand-600/12 blur-2xl"
+          aria-hidden
+        />
+        <nav className="relative flex h-16 items-center justify-between rounded-full border border-white/40 bg-gradient-to-r from-white/75 via-white/55 to-white/75 px-4 shadow-[0_22px_50px_-30px_rgba(15,23,42,0.55)] ring-1 ring-white/50 backdrop-blur lg:h-[68px] lg:px-6">
+          <Link to="/" className="flex items-center gap-3">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-brand-500/40 bg-white/90 text-sm font-semibold text-brand-600 shadow-[0_10px_30px_-20px_rgba(59,130,246,0.8)]">
             C
           </span>
           <div className="leading-tight">
-            <p className="font-display text-lg font-semibold text-slate-900">Campus SETU</p>
-            <p className="text-xs uppercase tracking-[0.4em] text-brand-400">Bridging careers</p>
+            <p className="font-display text-lg font-semibold text-slate-900">CampusSetu</p>
           </div>
         </Link>
 
         <div className="hidden flex-1 items-center justify-center lg:flex">
-          {renderLinks()}
+            {renderLinks("justify-center")}
         </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-2 lg:flex">
           {user ? (
             <>
-              <Button variant="ghost" onClick={goToDashboard}>
-                My dashboard
-              </Button>
-              <Button variant="secondary" onClick={handleLogout}>
-                Logout
-              </Button>
+                <Button
+                  variant="ghost"
+                  onClick={goToDashboard}
+                  className="px-4 text-slate-600 hover:text-slate-900"
+                >
+                  My dashboard
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={handleLogout}
+                  className="border-white/60 bg-white/80 text-slate-600 hover:bg-white"
+                >
+                  Logout
+                </Button>
             </>
           ) : (
             <>
-              <Button variant="ghost" onClick={() => navigate("/analytics")}>Live analytics</Button>
-              <Button onClick={openAuthModal}>Get started</Button>
+                <Button
+                  variant="ghost"
+                  onClick={() => navigate("/analytics")}
+                  className="px-4 text-slate-600 hover:text-slate-900"
+                >
+                  Live analytics
+                </Button>
+                <Button
+                  onClick={openAuthModal}
+                  className="from-brand-500 flex items-center gap-1 rounded-full bg-gradient-to-r to-brand-600 px-5 text-sm font-semibold text-white shadow-[0_10px_30px_-15px_rgba(59,130,246,0.9)] transition hover:shadow-[0_12px_36px_-14px_rgba(59,130,246,0.95)]"
+                >
+                  Get started
+                </Button>
             </>
           )}
         </div>
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/70 bg-white text-slate-600 shadow-soft lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-white/70 text-slate-600 transition duration-150 ease-out hover:bg-white/90 lg:hidden"
           onClick={() => setMenuOpen(true)}
           aria-label="Open menu"
         >
           <Bars3BottomRightIcon className="h-6 w-6" />
         </button>
       </nav>
+      </div>
 
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur"
+            className="fixed inset-0 z-40 bg-slate-900/25 backdrop-blur"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setMenuOpen(false)}
           >
             <motion.div
-              className="absolute right-4 top-20 w-[85vw] max-w-sm rounded-3xl border border-white/70 bg-white/95 p-6 shadow-elevated"
+              className="absolute right-4 top-20 w-[85vw] max-w-sm rounded-2xl border border-white/40 bg-white/85 p-6 shadow-[0_20px_60px_-35px_rgba(15,23,42,0.6)] ring-1 ring-white/50 backdrop-blur"
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -12, opacity: 0 }}
@@ -115,13 +151,13 @@ const Navbar = () => {
               <div className="mb-4 flex items-center justify-between">
                 <div>
                   <p className="font-display text-lg font-semibold text-slate-900">
-                    Campus SETU
+                    CampusSetu
                   </p>
-                  <p className="text-xs text-slate-400">Premium campus hiring suite</p>
+                  <p className="text-xs text-slate-400">Unified campus hiring workspace</p>
                 </div>
                 <button
                   type="button"
-                  className="h-9 w-9 rounded-xl border border-slate-100 text-slate-500"
+                  className="h-9 w-9 rounded-full border border-white/60 text-slate-500 transition duration-150 ease-out hover:bg-white/70"
                   onClick={() => setMenuOpen(false)}
                   aria-label="Close menu"
                 >

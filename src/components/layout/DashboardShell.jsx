@@ -14,8 +14,8 @@ const navLinkClass = ({ isActive }) =>
   clsx(
     "group relative flex w-full items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition",
     isActive
-      ? "bg-white text-brand-700 shadow-soft"
-      : "text-slate-500 hover:text-brand-600 hover:bg-white/80"
+      ? "bg-slate-100 text-slate-900"
+      : "text-slate-500 hover:bg-slate-100 hover:text-slate-900"
   );
 
 export default function DashboardShell({
@@ -53,30 +53,29 @@ export default function DashboardShell({
   );
 
   return (
-    <div className="min-h-screen bg-surface/80 pb-10">
-      <div className="absolute inset-x-0 -top-20 z-0 h-[360px] bg-gradient-glow blur-3xl opacity-70" />
-      <div className="relative z-10 mx-auto max-w-6xl px-4 pt-6 lg:px-6">
-        <div className="flex items-center justify-between rounded-3xl border border-white/60 bg-white/95 px-4 py-3 shadow-soft backdrop-blur lg:px-6">
+    <div className="min-h-screen pb-12">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 pt-8 lg:px-6">
+        <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-card lg:px-6">
           <div className="flex items-center gap-3">
             <button
               type="button"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/70 bg-white text-slate-600 shadow-soft lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 shadow-card lg:hidden"
               onClick={() => setMobileNavOpen(true)}
               aria-label="Open navigation"
             >
               <Bars3Icon className="h-5 w-5" />
             </button>
-            <Link to="/" className="flex items-center gap-2 rounded-2xl bg-brand-50 px-3 py-2">
-              <span className="text-sm font-semibold uppercase text-brand-700 tracking-[0.18em]">
-                Campus
+            <Link to="/" className="flex items-center gap-2">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500 text-base font-semibold text-white">
+                C
               </span>
-              <span className="font-display text-lg font-semibold text-slate-900">
-                SETU
-              </span>
+              <div className="leading-tight">
+                <p className="font-display text-lg font-semibold text-slate-900">CampusSetu</p>
+              </div>
             </Link>
           </div>
-          <div className="hidden max-w-[320px] flex-1 items-center gap-3 rounded-2xl border border-white/70 bg-white px-4 py-2 shadow-soft lg:flex">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+          <div className="hidden max-w-[320px] flex-1 items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-slate-500 lg:flex">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-brand-500">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -94,27 +93,27 @@ export default function DashboardShell({
             </div>
             <input
               type="search"
-              placeholder="Search roles, companies or updates..."
-              className="w-full border-none bg-transparent text-sm text-slate-600 placeholder:text-slate-400 focus:outline-none"
+              placeholder="Search"
+              className="w-full border-none bg-transparent text-sm placeholder:text-slate-400 focus:outline-none"
             />
           </div>
           <div className="flex items-center gap-3">
             <button
               type="button"
               aria-label="Notifications"
-              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/70 bg-white text-slate-500 shadow-soft transition hover:text-brand-600"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 shadow-card transition hover:text-brand-600"
             >
               <BellIcon className="h-5 w-5" />
             </button>
             <button
               type="button"
               aria-label="Toggle theme"
-              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/70 bg-white text-slate-500 shadow-soft transition hover:text-brand-600"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 shadow-card transition hover:text-brand-600"
             >
               <SunIcon className="h-5 w-5" />
             </button>
-            <div className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white px-3 py-2 shadow-soft">
-              <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-brand-100 font-semibold text-brand-700">
+            <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-card">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 font-semibold text-brand-600">
                 {initials || ""}
               </div>
               <div className="hidden leading-tight lg:block">
@@ -124,7 +123,7 @@ export default function DashboardShell({
               <button
                 type="button"
                 onClick={onSignOut}
-                className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-brand-500 text-white shadow-soft transition hover:bg-brand-600"
+                className="ml-1 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-white shadow-card transition hover:bg-brand-600"
                 aria-label="Sign out"
               >
                 <ArrowRightOnRectangleIcon className="h-5 w-5" />
@@ -132,9 +131,9 @@ export default function DashboardShell({
             </div>
           </div>
         </div>
-        <div className="mt-6 grid gap-6 lg:grid-cols-[280px_1fr]">
-          <aside className="hidden h-full rounded-3xl border border-white/70 bg-white/95 p-4 shadow-soft backdrop-blur lg:block">
-            <div className="mb-4">
+        <div className="grid gap-6 lg:grid-cols-[240px_1fr]">
+          <aside className="hidden h-full rounded-2xl border border-slate-200 bg-white p-5 shadow-card lg:block">
+            <div className="mb-5">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
                 Navigate
               </p>
@@ -144,7 +143,7 @@ export default function DashboardShell({
           </aside>
           <main className="space-y-6">
             {headerSlot && (
-              <div className="rounded-3xl border border-white/70 bg-white/95 p-6 shadow-soft backdrop-blur">
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
                 {headerSlot}
               </div>
             )}
@@ -155,14 +154,14 @@ export default function DashboardShell({
       <AnimatePresence>
         {mobileNavOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-40 bg-slate-900/30 backdrop-blur-sm lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setMobileNavOpen(false)}
           >
             <motion.div
-              className="absolute left-0 top-0 h-full w-[280px] bg-white p-6 shadow-elevated"
+              className="absolute left-0 top-0 h-full w-[260px] bg-white p-6 shadow-elevated"
               initial={{ x: -280 }}
               animate={{ x: 0 }}
               exit={{ x: -280 }}
@@ -170,11 +169,11 @@ export default function DashboardShell({
             >
               <div className="flex items-center justify-between">
                 <Link to="/" className="font-display text-lg font-semibold text-slate-900">
-                  Campus SETU
+                  CampusSetu
                 </Link>
                 <button
                   type="button"
-                  className="h-9 w-9 rounded-xl border border-slate-100 text-slate-500"
+                  className="h-9 w-9 rounded-lg border border-slate-200 text-slate-500"
                   onClick={() => setMobileNavOpen(false)}
                   aria-label="Close navigation"
                 >

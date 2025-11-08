@@ -39,20 +39,20 @@ export function StudentLayout() {
           Opportunity Hub
         </p>
         <h1 className="mt-2 text-3xl font-semibold text-slate-900">
-          {user?.name ? `Welcome back, ${user.name.split(" ")[0]}!` : "Welcome to Campus SETU"}
+          {user?.name ? `Welcome back, ${user.name.split(" ")[0]}!` : "Welcome to CampusSetu"}
         </h1>
         <p className="mt-3 max-w-xl text-sm text-slate-500">
           Track every application, uncover tailored roles, and keep your profile polished for recruiters actively hiring across campuses.
         </p>
       </div>
       <div className="grid grid-cols-2 gap-3 text-sm">
-        <div className="rounded-2xl border border-white/70 bg-white px-4 py-3 shadow-soft">
+        <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-card">
           <p className="text-xs uppercase tracking-wide text-slate-400">Overall CGPA</p>
           <p className="mt-1 text-2xl font-semibold text-brand-600">
             {user?.profile?.cgpa ? Number(user.profile.cgpa).toFixed(1) : "—"}
           </p>
         </div>
-        <div className="rounded-2xl border border-white/70 bg-white px-4 py-3 shadow-soft">
+        <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-card">
           <p className="text-xs uppercase tracking-wide text-slate-400">Skills Tracked</p>
           <p className="mt-1 text-2xl font-semibold text-brand-600">
             {user?.profile?.skills?.length ?? 0}

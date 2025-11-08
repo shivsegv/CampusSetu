@@ -7,6 +7,7 @@ import {
   PaperClipIcon,
   SparklesIcon,
 } from "@heroicons/react/24/outline";
+import Button from "./Button";
 
 export default function ApplyModal({ job, onClose, onApplied }) {
   const { user } = useAuth();
@@ -64,10 +65,9 @@ export default function ApplyModal({ job, onClose, onApplied }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-white/70 bg-white/95 p-6 shadow-elevated backdrop-blur">
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-400 via-brand-500 to-accent-400" />
+              <Dialog.Panel className="relative w-full max-w-xl overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-elevated">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
                     <SparklesIcon className="h-6 w-6" />
                   </div>
                   <div>
@@ -93,7 +93,7 @@ export default function ApplyModal({ job, onClose, onApplied }) {
                         value={resumeUrl}
                         onChange={(event) => setResumeUrl(event.target.value)}
                         placeholder="https://portfolio.com/resume.pdf"
-                        className="w-full rounded-2xl border border-white/70 bg-white/95 px-11 py-3 text-sm text-slate-600 shadow-soft focus:border-brand-200"
+                        className="w-full rounded-xl border border-slate-200 bg-white px-11 py-3 text-sm text-slate-600 shadow-card focus:border-slate-300"
                       />
                     </div>
                     <p className="text-xs text-slate-400">
@@ -111,33 +111,22 @@ export default function ApplyModal({ job, onClose, onApplied }) {
                       value={cover}
                       onChange={(event) => setCover(event.target.value)}
                       placeholder="Highlight your interest and relevant experience..."
-                      className="w-full rounded-2xl border border-white/70 bg-white/95 px-4 py-3 text-sm text-slate-600 shadow-soft focus:border-brand-200"
+                      className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-card focus:border-slate-300"
                     />
                   </div>
 
-                  <div className="flex flex-col gap-3 rounded-2xl border border-brand-100 bg-brand-50/70 px-4 py-3 text-xs text-brand-700">
-                    <p className="font-semibold">Tip for impact</p>
-                    <p>
-                      Reference a recent project or internship aligning with {job.companyName}'s mission. Mention availability and preferred start.
-                    </p>
+                  <div className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-600">
+                    <p className="font-semibold text-slate-700">Tip for impact</p>
+                    <p>Reference a recent project or internship aligning with {job.companyName}'s mission. Mention availability and preferred start.</p>
                   </div>
 
                   <div className="flex flex-wrap items-center justify-end gap-3 pt-2">
-                    <button
-                      type="button"
-                      onClick={onClose}
-                      className="inline-flex items-center justify-center rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-500 transition hover:border-slate-300 hover:text-slate-700"
-                    >
+                    <Button variant="secondary" onClick={onClose}>
                       Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={loading}
-                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-600 to-accent-500 px-5 py-2 text-sm font-semibold text-white shadow-soft transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-70"
-                    >
-                      {loading ? "Submitting..." : "Submit Application"}
-                      <ArrowUpRightIcon className="h-4 w-4" />
-                    </button>
+                    </Button>
+                    <Button type="submit" loading={loading} rightIcon={ArrowUpRightIcon}>
+                      Submit application
+                    </Button>
                   </div>
                 </form>
               </Dialog.Panel>

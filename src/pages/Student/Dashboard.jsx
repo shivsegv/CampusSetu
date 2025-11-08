@@ -92,13 +92,13 @@ export function StudentDashboard() {
         {metrics.map(({ label, value, icon: Icon }) => (
           <div
             key={label}
-            className="rounded-3xl border border-white/70 bg-white/95 p-4 shadow-soft backdrop-blur"
+            className="rounded-2xl border border-slate-200 bg-white p-4 shadow-card"
           >
             <div className="flex items-center justify-between">
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide">
                 {label}
               </p>
-              <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
                 <Icon className="h-4 w-4" />
               </div>
             </div>
@@ -117,7 +117,7 @@ export function StudentDashboard() {
           <p className="text-xs text-slate-500">{total} curated opportunities based on your filters.</p>
         </div>
         <div className="flex items-center gap-3 text-xs text-slate-500">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white px-3 py-1.5 font-medium">
+          <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 font-medium">
             <span className="h-2 w-2 rounded-full bg-success" />
             <span>Approved roles only</span>
           </span>

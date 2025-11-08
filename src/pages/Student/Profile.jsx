@@ -78,7 +78,7 @@ export function StudentProfile() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-3xl border border-white/70 bg-white/95 p-6 shadow-soft backdrop-blur">
+  <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-400">
@@ -91,9 +91,9 @@ export function StudentProfile() {
           </div>
           <div className="grid grid-cols-3 gap-3">
             {summaryChips.map((chip) => (
-              <div key={chip.label} className="rounded-2xl border border-brand-100 bg-brand-50/80 px-4 py-3 text-center">
-                <p className="text-xs font-semibold uppercase text-brand-500">{chip.label}</p>
-                <p className="mt-1 text-lg font-semibold text-brand-700">{chip.value}</p>
+              <div key={chip.label} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-center">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">{chip.label}</p>
+                <p className="mt-2 text-lg font-semibold text-slate-800">{chip.value}</p>
               </div>
             ))}
           </div>
@@ -107,7 +107,7 @@ export function StudentProfile() {
               type="text"
               value={form.name}
               onChange={(event) => update("name", event.target.value)}
-              className="w-full rounded-2xl border border-white/70 bg-white/95 px-4 py-3 text-sm text-slate-600 shadow-soft focus:border-brand-200"
+              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-card focus:border-slate-300"
             />
           </Field>
 
@@ -118,7 +118,7 @@ export function StudentProfile() {
                 type="email"
                 value={form.email}
                 readOnly
-                className="w-full rounded-2xl border border-white/70 bg-slate-100/80 px-4 py-3 pl-11 text-sm text-slate-500 shadow-soft"
+                className="w-full rounded-xl border border-slate-200 bg-slate-100 px-4 py-3 pl-11 text-sm text-slate-500 shadow-card"
               />
             </div>
           </Field>
@@ -130,7 +130,7 @@ export function StudentProfile() {
               value={form.cgpa}
               onChange={(event) => update("cgpa", event.target.value)}
               placeholder="e.g., 8.5"
-              className="w-full rounded-2xl border border-white/70 bg-white/95 px-4 py-3 text-sm text-slate-600 shadow-soft focus:border-brand-200"
+              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-card focus:border-slate-300"
             />
           </Field>
 
@@ -148,7 +148,7 @@ export function StudentProfile() {
                 )
               }
               placeholder="React, Node.js, Data Analysis"
-              className="w-full rounded-2xl border border-white/70 bg-white/95 px-4 py-3 text-sm text-slate-600 shadow-soft focus:border-brand-200"
+              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 shadow-card focus:border-slate-300"
             />
           </Field>
 
@@ -160,14 +160,14 @@ export function StudentProfile() {
                 value={form.resumeUrl}
                 onChange={(event) => update("resumeUrl", event.target.value)}
                 placeholder="https://example.com/my-resume.pdf"
-                className="w-full rounded-2xl border border-white/70 bg-white/95 px-4 py-3 pl-11 text-sm text-slate-600 shadow-soft focus:border-brand-200"
+                className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 pl-11 text-sm text-slate-600 shadow-card focus:border-slate-300"
               />
             </div>
           </Field>
 
-          <div className="rounded-2xl border border-brand-100 bg-brand-50/80 px-4 py-3 text-xs text-brand-600">
-            <div className="flex items-center gap-2 font-semibold">
-              <SparklesIcon className="h-4 w-4" />
+          <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-600">
+            <div className="flex items-center gap-2 font-semibold text-slate-700">
+              <SparklesIcon className="h-4 w-4 text-brand-500" />
               Tip: Certifications
             </div>
             <p className="mt-2">
@@ -180,7 +180,7 @@ export function StudentProfile() {
               type="button"
               onClick={handleSave}
               disabled={status.saving}
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-600 to-accent-500 px-6 py-2 text-sm font-semibold text-white shadow-soft transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-70"
+              className="inline-flex items-center gap-2 rounded-xl border border-brand-500 bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-card transition hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-70"
             >
               {status.saving ? "Saving..." : "Save changes"}
             </button>

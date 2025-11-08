@@ -64,7 +64,7 @@ export function StudentApplications() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-3xl border border-white/70 bg-white/95 p-6 shadow-soft backdrop-blur">
+  <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-400">
@@ -77,9 +77,9 @@ export function StudentApplications() {
           </div>
           <div className="grid grid-cols-3 gap-3 text-center">
             {stats.map((item) => (
-              <div key={item.label} className="rounded-2xl border border-brand-100 bg-brand-50/80 px-4 py-3">
-                <p className="text-xs font-semibold uppercase text-brand-500">{item.label}</p>
-                <p className="mt-1 text-lg font-semibold text-brand-700">{item.value}</p>
+              <div key={item.label} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">{item.label}</p>
+                <p className="mt-2 text-lg font-semibold text-slate-800">{item.value}</p>
               </div>
             ))}
           </div>
@@ -99,16 +99,16 @@ export function StudentApplications() {
           </p>
           <Link
             to="/student/dashboard"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-600 to-accent-500 px-5 py-2 text-sm font-semibold text-white shadow-soft"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300"
           >
             Find opportunities
             <ArrowUpRightIcon className="h-4 w-4" />
           </Link>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-3xl border border-white/70 bg-white/95 shadow-soft backdrop-blur">
+        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card">
           <table className="w-full text-left text-sm text-slate-600">
-            <thead className="border-b border-slate-100 bg-white/90 text-xs font-semibold uppercase tracking-wide text-slate-400">
+            <thead className="border-b border-slate-200 bg-white text-xs font-semibold uppercase tracking-wide text-slate-400">
               <tr>
                 <th className="px-5 py-3">Job title</th>
                 <th className="px-5 py-3">Company</th>
@@ -122,8 +122,8 @@ export function StudentApplications() {
                 <tr
                   key={application.id}
                   className={clsx(
-                    "border-b border-slate-100 text-sm transition hover:bg-brand-50/40",
-                    index % 2 === 1 && "bg-white/80"
+                    "border-b border-slate-100 text-sm transition hover:bg-slate-50",
+                    index % 2 === 1 && "bg-slate-50/60"
                   )}
                 >
                   <td className="px-5 py-4 font-semibold text-slate-800">{application.jobTitle}</td>
@@ -135,7 +135,7 @@ export function StudentApplications() {
                   <td className="px-5 py-4 text-right">
                     <Link
                       to={`/jobs/${application.jobId}`}
-                      className="inline-flex items-center gap-2 rounded-full border border-brand-100 px-3 py-1.5 text-xs font-semibold text-brand-600 transition hover:bg-brand-50"
+                      className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-slate-300"
                     >
                       View job
                       <ArrowUpRightIcon className="h-4 w-4" />
