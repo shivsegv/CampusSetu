@@ -2,12 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { useUI } from "../../contexts/UIContext";
-import HomeHeader from "./components/HomeHeader";
 import HeroSection from "./components/HeroSection";
 import FeatureSection from "./components/FeatureSection";
 import AnalyticsSection from "./components/AnalyticsSection";
 import PersonaSection from "./components/PersonaSection";
 import HomeFooter from "./components/HomeFooter";
+import Navbar from "../../components/Navbar";
 import {
   analyticsMetrics,
   featurePillars,
@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      <HomeHeader onAuth={openAuthModal} />
+      <Navbar />
       <main className="w-full">
         <HeroSection
           heroHighlights={heroHighlights}
