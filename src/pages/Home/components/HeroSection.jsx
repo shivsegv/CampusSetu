@@ -1,37 +1,39 @@
 import React from "react";
-
+import Button from "../../../components/Button";
 
 export default function HeroSection({ heroHighlights, onPrimaryCTA, user }) {
-  const ctaLabel = user ? "Go to Dashboard" : "Join Campus Setu";
+  const ctaLabel = user ? "Go to dashboard" : "Launch your workspace";
 
   return (
     <section
       id="about"
-      className="w-full flex flex-col items-center justify-center px-4 py-20 bg-gradient-to-b from-primary/15 via-accent/10 to-white"
+      className="relative flex w-full flex-col items-center justify-center overflow-hidden px-4 py-24"
     >
-      <div className="w-full max-w-2xl flex flex-col items-center justify-center text-center gap-6">
-        <p className="text-primary font-semibold uppercase text-xs tracking-wide">
-          The smarter way to connect students, recruiters, and colleges
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold">
-          Streamline every step of campus hiring in one collaborative workspace
+      <div className="absolute inset-0 -z-10 bg-gradient-glow opacity-80" />
+      <div className="max-w-3xl text-center">
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-brand-500 shadow-soft">
+          Campus hiring ops
+        </div>
+        <h1 className="mt-6 text-4xl font-semibold text-slate-900 md:text-5xl">
+          Streamline placements across students, recruiters, and colleges
         </h1>
-        <p className="text-base text-slate-600">
-          Campus Setu brings together job discovery, applications, approvals, and analytics—making placements easier, faster, and more transparent for everyone involved.
+        <p className="mt-4 text-base text-slate-600 md:text-lg">
+          Campus SETU centralises opportunity discovery, approvals, communication, and analytics so every stakeholder moves in sync.
         </p>
-        <button
-          onClick={onPrimaryCTA}
-          className="mt-4 px-8 py-3 rounded-full bg-accent text-white font-semibold shadow hover:brightness-95 transition"
-        >
-          {ctaLabel}
-        </button>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <Button onClick={onPrimaryCTA}>{ctaLabel}</Button>
+          <Button variant="secondary" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: "smooth" })}>
+            Explore platform
+          </Button>
+        </div>
       </div>
-      <div className="w-full max-w-2xl flex flex-wrap justify-center gap-3 mt-12">
+      <div className="mt-12 flex max-w-3xl flex-wrap justify-center gap-3">
         {heroHighlights.map((item) => (
           <span
             key={item.title}
-            className="px-4 py-2 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-sm"
+            className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/95 px-4 py-2 text-xs font-semibold text-slate-600 shadow-soft"
           >
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-400" />
             {item.title}
           </span>
         ))}
