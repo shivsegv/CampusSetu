@@ -5,6 +5,7 @@ import {
   BriefcaseIcon,
   ChartBarIcon,
   CalendarDaysIcon,
+  DocumentTextIcon,
 } from "@heroicons/react/24/outline";
 
 export const dashboardNavConfig = {
@@ -14,6 +15,11 @@ export const dashboardNavConfig = {
       title: "Interview Hub",
       icon: CalendarDaysIcon,
       path: "/student/interview-hub",
+    },
+    {
+      title: "Resume Lab",
+      icon: DocumentTextIcon,
+      path: "/student/resume-lab",
     },
     {
       title: "Applications",
@@ -28,6 +34,11 @@ export const dashboardNavConfig = {
       title: "Interview Hub",
       icon: CalendarDaysIcon,
       path: "/recruiter/interview-hub",
+    },
+    {
+      title: "Resume Hub",
+      icon: DocumentTextIcon,
+      path: "/recruiter/resume-hub",
     },
     { title: "Post Job", icon: BriefcaseIcon, path: "/recruiter/post-job" },
     {

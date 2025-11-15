@@ -11,6 +11,7 @@ import {
   StudentApplications,
   StudentProfile,
   StudentInterviewHub,
+  StudentResumeLab,
 } from "./pages/Student";
 
 // Recruiter Pages
@@ -21,6 +22,7 @@ import {
   Applicants,
   EditJob,
   RecruiterInterviewHub,
+  RecruiterResumeHub,
 } from "./pages/Recruiter";
 
 // Placement (CGC) Pages
@@ -98,6 +100,14 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/student/resume-lab"
+          element={
+            <ProtectedRoute>
+              <StudentResumeLab />
+            </ProtectedRoute>
+          }
+        />
 
         {/* Protected Recruiter Routes */}
         <Route
@@ -145,6 +155,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <RecruiterInterviewHub />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/recruiter/resume-hub"
+          element={
+            <ProtectedRoute>
+              <RecruiterResumeHub />
             </ProtectedRoute>
           }
         />
