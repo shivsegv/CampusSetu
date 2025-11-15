@@ -10,6 +10,7 @@ import {
   StudentDashboard,
   StudentApplications,
   StudentProfile,
+  StudentInterviewHub,
 } from "./pages/Student";
 
 // Recruiter Pages
@@ -19,6 +20,7 @@ import {
   JobListings,
   Applicants,
   EditJob,
+  RecruiterInterviewHub,
 } from "./pages/Recruiter";
 
 // Placement (CGC) Pages
@@ -47,12 +49,21 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/jobs/:id" element={<JobDetails />} />
         <Route path="/analytics" element={<AnalyticsDashboard />} />
-        
+
         {/* Feature Pages */}
-        <Route path="/features/company-insights" element={<CompanyInsights />} />
+        <Route
+          path="/features/company-insights"
+          element={<CompanyInsights />}
+        />
         <Route path="/features/alumni-network" element={<AlumniNetwork />} />
-        <Route path="/features/interview-scheduling" element={<InterviewScheduling />} />
-        <Route path="/features/resume-intelligence" element={<ResumeIntelligence />} />
+        <Route
+          path="/features/interview-scheduling"
+          element={<InterviewScheduling />}
+        />
+        <Route
+          path="/features/resume-intelligence"
+          element={<ResumeIntelligence />}
+        />
 
         {/* Protected Student Routes */}
         <Route
@@ -76,6 +87,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <StudentApplications />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/student/interview-hub"
+          element={
+            <ProtectedRoute>
+              <StudentInterviewHub />
             </ProtectedRoute>
           }
         />
@@ -118,6 +137,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <EditJob />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/recruiter/interview-hub"
+          element={
+            <ProtectedRoute>
+              <RecruiterInterviewHub />
             </ProtectedRoute>
           }
         />
